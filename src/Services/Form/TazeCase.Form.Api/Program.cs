@@ -1,5 +1,10 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using TazeCase.Form.Business.Mapper;
+using TazeCase.Form.Business.Service.Form;
+using TazeCase.Form.Core.Repository;
 using TazeCase.Form.Data.Context;
+using TazeCase.Form.Data.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +15,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddTransient<IFormService, FormService>();
+builder.Services.AddTransient<IFormRepository, FormRepository>();
 
 
 #if DEBUG
@@ -20,6 +27,10 @@ builder.Services.AddDbContext<FormDataContext>(opt =>
 builder.Services.AddDbContext<DataContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 #endif
+
+var automapper = new MapperConfiguration(item => item.AddProfile(new GeneralMapping()));
+IMapper mapper = automapper.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 

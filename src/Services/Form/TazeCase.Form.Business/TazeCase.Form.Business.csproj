@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TazeCase.Form.Core\TazeCase.Form.Core.csproj" />
+    <ProjectReference Include="..\TazeCase.Form.Data\TazeCase.Form.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
 </Project>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TazeCase.Form.Core.Entities;
@@ -38,6 +39,20 @@ namespace TazeCase.Form.Data.Repository
         {
             return await context.Set<T>().ToListAsync();
         }
+        public async Task<List<T>> GetAllAsyncInc(Expression<Func<T, object>>[] includeProperties = null)
+        {
+            var query = context.Set<T>().AsQueryable();
+            if (includeProperties != null)
+            {
+                foreach (var includeProperty in includeProperties)
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
+            return await query.ToListAsync();
+
+            //return await context.Set<T>().ToListAsync();
+        }
 
         public async Task<T> GetByIdAsync(Guid id)
         {
@@ -59,7 +74,27 @@ namespace TazeCase.Form.Data.Repository
 
             return await query.ToListAsync();
         }
+        public async Task<List<T>> GetFilteredIncAsync(Expression<Func<T, object>>[] includeProperties = null,int ? limit = null, int? pageNumber = null, int? pageSize = null)
+        {
+            var query = context.Set<T>().AsQueryable();
+            if (includeProperties != null)
+            {
+                foreach (var includeProperty in includeProperties)
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
+            if (pageNumber.HasValue && pageSize.HasValue)
+            {
+                query = query.Skip((pageNumber.Value - 1) * pageSize.Value).Take(pageSize.Value);
+            }
+            else if (limit.HasValue)
+            {
+                query = query.Take(limit.Value);
+            }
 
+            return await query.ToListAsync();
+        }
         public async Task<T> Update(T entity)
         {
             var existingEntity = await context.Set<T>().FindAsync(entity.Id);

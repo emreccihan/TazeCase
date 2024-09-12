@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TazeCase.Form.Core.Entities;
@@ -51,7 +52,19 @@ namespace TazeCase.Form.Business.Service
                 return BaseResponse<List<TOutputDto>>.Error("An error occurred while fetching entities: " + ex.Message);
             }
         }
-
+        //public async Task<BaseResponse<List<TOutputDto>>> GetAllIncludeAsync(params Expression<Func<TEntity, object>>[] includeProperties)
+        //{
+        //    try
+        //    {
+        //        var res = await repository.GetAllAsyncInc(includeProperties);
+        //        var resDto = this.mapper.Map<List<TOutputDto>>(res);
+        //        return BaseResponse<List<TOutputDto>>.Success(resDto, "Entities fetched successfully");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BaseResponse<List<TOutputDto>>.Error("An error occurred while fetching entities: " + ex.Message);
+        //    }
+        //}
         public async Task<BaseResponse<TOutputDto>> GetByIdAsync(Guid id)
         {
             try

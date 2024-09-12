@@ -19,7 +19,13 @@ namespace TazeCase.Form.Data.Context
         public DbSet<Core.Entities.FormField> FormFields { get; set; }
         public DbSet<Core.Entities.FormData> FormDatas { get; set; }
         public DbSet<Core.Entities.FormDataValue> FormDataValues { get; set; }
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseLazyLoadingProxies();
+            }
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

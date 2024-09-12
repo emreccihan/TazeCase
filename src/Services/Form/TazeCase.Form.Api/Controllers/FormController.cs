@@ -1,5 +1,6 @@
 ﻿using Azure;
 using Microsoft.AspNetCore.Mvc;
+using TazeCase.Form.Business.DTOs.FormDto;
 using TazeCase.Form.Business.Service.Form;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -37,8 +38,13 @@ namespace TazeCase.Form.Api.Controllers
 
         // POST api/<FormController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] FormInputDto entityDto)
         {
+            var res = await formService.AddAsync(entityDto);
+            if (res.Status != 200)
+                return StatusCode(res.Status, res.Message);
+
+            return Ok(res);
         }
 
         // PUT api/<FormController>/5

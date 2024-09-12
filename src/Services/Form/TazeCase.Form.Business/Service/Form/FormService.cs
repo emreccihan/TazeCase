@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TazeCase.Form.Business.DTOs.FormDto;
+using TazeCase.Form.Core.Entities;
 using TazeCase.Form.Core.Repository;
 using TazeCase.Form.Core.Wrappers.Response;
 using TazeCase.Form.Data.Repository;
@@ -22,6 +24,22 @@ namespace TazeCase.Form.Business.Service.Form
             this.mapper = mapper;
         }
 
+        public async Task<BaseResponse<FormOutputDto>> AddAsync(FormInputDto entityDto)
+        {
+            try
+            {
+                var entity=this.mapper.Map<Core.Entities.Form>(entityDto);
+                var res = await formRepository.AddAsync(entity);
+                var resDto = this.mapper.Map<FormOutputDto>(res);
+                return BaseResponse<FormOutputDto>.Success(resDto, "Form added successfully");
+
+            }
+            catch (Exception ex)
+            {
+
+                return BaseResponse<FormOutputDto>.Error("An error occurred while added form: " + ex.Message);
+            }
+        }
         public async Task<BaseResponse<List<FormOutputDto>>> GetAllAsync()
         {
             try

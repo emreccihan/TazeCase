@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TazeCase.Form.Core.Entities
+namespace TazeCase.Form.Business.DTOs.FormDto
 {
-    public class Form : BaseEntity
+    public class FormInputDto
     {
         public string FormName { get; set; }
         public string? Description { get; set; }
-        public virtual ICollection<FormField> Fields { get; set; }
-        public bool IsActive { get; set; } = true;
     }
 }

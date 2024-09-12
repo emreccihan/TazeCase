@@ -11,5 +11,6 @@ namespace TazeCase.Form.Business.Service.Form
     public interface IFormService
     {
         Task<BaseResponse<List<FormOutputDto>>> GetAllAsync();
+        Task<BaseResponse<FormOutputDto>> AddAsync(FormInputDto entityDto);
     }
 }

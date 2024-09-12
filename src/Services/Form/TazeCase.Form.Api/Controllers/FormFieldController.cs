@@ -30,6 +30,17 @@ namespace TazeCase.Form.Api.Controllers
 
             return Ok(res);
         }
+        [HttpGet()]
+        [Route("ByFormId/{formId}")]
+
+        public async Task<IActionResult> GetByFromId(Guid formId)
+        {
+            var res = await formFieldService.GetFormFieldByFormId(formId);
+            if (res.Status != 200)
+                return StatusCode(res.Status, res);
+
+            return Ok(res);
+        }
         [HttpGet]
         [Route("Filtered")]
         public async Task<IActionResult> GetFiltered([FromQuery] int? limit = null, [FromQuery] int? pageNumber = null, [FromQuery] int? pageSize = null)

@@ -10,5 +10,7 @@ namespace TazeCase.Form.Core.Repository
 {
     public interface IFormFieldRepository : IGenericRepository<Core.Entities.FormField>
     {
+        Task<List<FormField>> GetFormFieldsByFormId(Guid formId);
+
     }
 }

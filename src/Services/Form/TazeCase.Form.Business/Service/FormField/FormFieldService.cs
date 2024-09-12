@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TazeCase.Form.Business.DTOs.FormDto;
 using TazeCase.Form.Business.DTOs.FormFieldDto;
@@ -56,6 +57,31 @@ namespace TazeCase.Form.Business.Service.FormField
             catch (Exception ex)
             {
                 return BaseResponse<List<FormFieldOutputDto>>.Error("An error occurred while fetching entities: " + ex.Message);
+            }
+        }
+
+        public async Task<BaseResponse<List<FormFieldGroupByFormDto>>> GetFormFieldByFormId(Guid formId)
+        {
+            try
+            {
+                var res =await formFieldRepository.GetFormFieldsByFormId(formId);
+                //var resGroupBy=res.GroupBy(x => x.FormId).Select(group=>new FormFieldGroupByFormDto
+                //{
+                //    FormId=group.Key,
+                //    Form = group.FirstOrDefault()?.Form != null
+                //    ? mapper.Map<FormOutputDto>(group.First().Form)
+                //    : null,
+                //    FormFields =mapper.Map<List<FormFieldBaseOutputDto>>(group)
+                //}).ToList();
+                var resGroupBy = mapper.Map<List<FormFieldGroupByFormDto>>(res.GroupBy(x => x.FormId).ToList());
+
+                return BaseResponse<List<FormFieldGroupByFormDto>>.Success(resGroupBy, "Entities fetched successfully");
+
+            }
+            catch (Exception ex)
+            {
+
+                return BaseResponse<List<FormFieldGroupByFormDto>>.Error("An error occurred while fetching entities: " + ex.Message);
             }
         }
 

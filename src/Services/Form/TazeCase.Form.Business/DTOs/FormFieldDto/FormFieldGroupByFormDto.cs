@@ -7,10 +7,11 @@ using TazeCase.Form.Business.DTOs.FormDto;
 
 namespace TazeCase.Form.Business.DTOs.FormFieldDto
 {
-    public class FormFieldBaseOutputDto:BaseDto
+    public class FormFieldGroupByFormDto
     {
-        public string FieldName { get; set; }
-        public string FieldType { get; set; }
-        public bool IsRequired { get; set; }
+        public Guid FormId { get; set; }
+        public FormOutputDto Form {  get; set; }    
+        public List<FormFieldBaseOutputDto>FormFields { get; set; }
     }
+    
 }

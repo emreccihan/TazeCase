@@ -15,6 +15,7 @@ namespace TazeCase.Form.Business.Service.FormField
     {
         Task<BaseResponse<List<FormFieldOutputDto>>> GetAllIncludeAsync();
         Task<BaseResponse<List<FormFieldOutputDto>>> GetFilteredIncludeAsync(int? limit = null, int? pageNumber = null, int? pageSize = null);
+        Task<BaseResponse<List<FormFieldGroupByFormDto>>> GetFormFieldByFormId(Guid formId);
 
     }
 }

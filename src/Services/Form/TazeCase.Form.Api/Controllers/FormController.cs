@@ -24,39 +24,71 @@ namespace TazeCase.Form.Api.Controllers
         {
             var res = await formService.GetAllAsync();
             if (res.Status != 200)
-                return StatusCode(res.Status, res.Message);
+                return StatusCode(res.Status, res);
+
+            return Ok(res);
+        }
+        [HttpGet]
+        [Route("Filtered")]
+        public async Task<IActionResult> GetFiltered([FromQuery] int? limit = null, [FromQuery] int? pageNumber = null, [FromQuery] int? pageSize = null)
+        {
+            var res = await formService.GetFilteredAsync(limit, pageNumber, pageSize);
+            if (res.Status != 200)
+                return StatusCode(res.Status, res);
+
+            return Ok(res);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var res = await formService.GetByIdAsync(id);
+            if (res.Status != 200)
+                return StatusCode(res.Status, res);
 
             return Ok(res);
         }
 
-        // GET api/<FormController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<FormController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] FormInputDto entityDto)
         {
             var res = await formService.AddAsync(entityDto);
             if (res.Status != 200)
-                return StatusCode(res.Status, res.Message);
+                return StatusCode(res.Status, res);
 
             return Ok(res);
         }
 
         // PUT api/<FormController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(Guid id, [FromBody] FormInputDto entityDto)
         {
+            var res = await formService.Update(id,entityDto);
+            if (res.Status != 200)
+                return StatusCode(res.Status, res);
+
+            return Ok(res);
         }
 
         // DELETE api/<FormController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
+            var res = await formService.Delete(id);
+            if (res.Status != 200)
+                return StatusCode(res.Status, res);
+
+            return Ok(res);
+        }
+        [HttpPost()]
+        [Route("IsActive")]
+
+        public async Task<IActionResult> UpdateActiveStatus([FromBody] FormInputActiveStatusDto entityDto)
+        {
+            var res = await formService.UpdateActiveStatus(entityDto);
+            if (res.Status != 200)
+                return StatusCode(res.Status, res);
+
+            return Ok(res);
         }
     }
 }

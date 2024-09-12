@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,16 @@ namespace TazeCase.Form.Data.Repository
         public FormRepository(FormDataContext dbContext) : base(dbContext)
         {
 
+        }
+
+        public async Task<bool> UpdateActiveStatus(Core.Entities.Form comingEntity)
+        {
+            var entity = await context.Set<Core.Entities.Form>().FirstOrDefaultAsync(q => q.Id == comingEntity.Id);
+            if (entity == null)
+                return false;
+            entity.IsDeleted = true;
+            var result = await context.SaveChangesAsync();
+            return result > 0;
         }
     }
 }

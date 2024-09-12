@@ -12,7 +12,7 @@ namespace TazeCase.Form.Data.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
-        private readonly FormDataContext context;
+        protected readonly FormDataContext context;
         public GenericRepository(FormDataContext context)
         {
             this.context = context;
@@ -24,15 +24,14 @@ namespace TazeCase.Form.Data.Repository
             return entity;
         }
 
-        public async Task<T> DeleteAsync(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var entity= await context.Set<T>().FirstOrDefaultAsync(q => q.Id == id);
             if (entity == null)
-                return null;
+                return false;
             entity.IsDeleted= true;
-            await context.SaveChangesAsync();
-
-            throw new NotImplementedException();
+            var result =await context.SaveChangesAsync();
+            return result > 0;
         }
 
         public async Task<List<T>> GetAllAsync()
@@ -43,6 +42,22 @@ namespace TazeCase.Form.Data.Repository
         public async Task<T> GetByIdAsync(Guid id)
         {
             return await context.Set<T>().FirstOrDefaultAsync(q=>q.Id==id);
+        }
+
+        public async Task<List<T>> GetFilteredAsync(int? limit = null, int? pageNumber = null, int? pageSize = null)
+        {
+            var query = context.Set<T>().AsQueryable();
+
+            if (pageNumber.HasValue && pageSize.HasValue)
+            {
+                query = query.Skip((pageNumber.Value - 1) * pageSize.Value).Take(pageSize.Value);
+            }
+            else if (limit.HasValue) 
+            {
+                query = query.Take(limit.Value);
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<T> Update(T entity)

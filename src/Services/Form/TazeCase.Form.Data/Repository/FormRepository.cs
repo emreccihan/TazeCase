@@ -21,7 +21,7 @@ namespace TazeCase.Form.Data.Repository
             var entity = await context.Set<Core.Entities.Form>().FirstOrDefaultAsync(q => q.Id == comingEntity.Id);
             if (entity == null)
                 return false;
-            entity.IsDeleted = true;
+            entity.IsActive = comingEntity.IsActive;
             var result = await context.SaveChangesAsync();
             return result > 0;
         }

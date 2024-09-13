@@ -11,16 +11,14 @@ namespace TazeCase.Report.Core.DTOs.FormDataDto
     {
         public Guid FormId { get; set; }
         public FormOutputDto Form { get; set; }
-        public List<FormFieldData> FormData { get; set; }
-
+        public List<FormFieldDataGroupedDto> FormData { get; set; }
     }
-    public class FormFieldData
+
+    public class FormFieldDataGroupedDto
     {
         public Guid FormFieldId { get; set; }
         public FormFieldDetails FormField { get; set; }
-        public string Value { get; set; }
-        public Guid Id { get; set; }
-        public bool IsDeleted { get; set; }
+        public List<FormDataValueDto> Data { get; set; }
     }
 
     public class FormFieldDetails
@@ -28,6 +26,13 @@ namespace TazeCase.Report.Core.DTOs.FormDataDto
         public string FieldName { get; set; }
         public string FieldType { get; set; }
         public bool IsRequired { get; set; }
+        public Guid Id { get; set; }
+        public bool IsDeleted { get; set; }
+    }
+
+    public class FormDataValueDto
+    {
+        public string Value { get; set; }
         public Guid Id { get; set; }
         public bool IsDeleted { get; set; }
     }

@@ -36,7 +36,7 @@ namespace TazeCase.Form.Business.Mapper
                .ForMember(dest => dest.FormId, opt => opt.MapFrom(src => src.Key))  
                .ForMember(dest => dest.Form, opt => opt.MapFrom(src => src.FirstOrDefault().Form != null
                    ? src.First().Form
-                   : null))  // İlk Form'u kontrol ederek eşliyoruz
+                   : null)) 
                .ForMember(dest => dest.FormFields, opt => opt.MapFrom(src => src.ToList()));
 
 
@@ -50,7 +50,7 @@ namespace TazeCase.Form.Business.Mapper
                .ForMember(dest => dest.FormId, opt => opt.MapFrom(src => src.Key))
                .ForMember(dest => dest.Form, opt => opt.MapFrom(src => src.FirstOrDefault().Form != null
                    ? src.First().Form
-                   : null))  // İlk Form'u kontrol ederek eşliyoruz
+                   : null)) 
                .ForMember(dest => dest.FormData, opt => opt.MapFrom(src => src.ToList()));
             //CreateMap<Core.Entities.FormDataValue, DTOs.FormFieldDto.FormFieldInputDto>()
             //    .ReverseMap();

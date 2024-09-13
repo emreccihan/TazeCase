@@ -13,4 +13,12 @@ namespace TazeCase.Form.Business.DTOs.FormDataDto
         public FormFieldBaseOutputDto FormField { get; set; }
         public string Value { get; set; }
     }
+    public class FormDataValueDto
+    {
+        public string Value { get; set; }
+        public Guid Id { get; set; }
+        public bool IsDeleted { get; set; }
+    }
+
+
 }

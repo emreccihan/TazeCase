@@ -1,3 +1,4 @@
+using TazeCase.Report.Business.Services.FormDataService;
 using TazeCase.Report.Business.Services.FormService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IFormService, FormService>();
+builder.Services.AddTransient<IFormDataService, FormDataService>();
 builder.Services.AddHttpClient();
 var app = builder.Build();
 

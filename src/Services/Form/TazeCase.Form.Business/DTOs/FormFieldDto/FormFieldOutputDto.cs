@@ -9,7 +9,7 @@ namespace TazeCase.Form.Business.DTOs.FormFieldDto
 {
     public class FormFieldOutputDto:FormFieldBaseOutputDto
     {
-        public FormOutputDto Form { get; set; }
+        public FormBaseOutputDto Form { get; set; }
 
     }
 }

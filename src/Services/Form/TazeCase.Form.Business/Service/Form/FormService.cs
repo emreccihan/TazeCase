@@ -3,9 +3,11 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TazeCase.Form.Business.DTOs.FormDto;
+using TazeCase.Form.Business.DTOs.FormFieldDto;
 using TazeCase.Form.Core.Entities;
 using TazeCase.Form.Core.Repository;
 using TazeCase.Form.Core.Wrappers.Response;
@@ -28,6 +30,21 @@ namespace TazeCase.Form.Business.Service.Form
         {
             this.formRepository = formRepository;
             this.mapper = mapper;
+        }
+
+        public async Task<BaseResponse<List<FormOutputDto>>> GetAllIncludeAsync()
+        {
+            try
+            {
+
+                var res = await formRepository.GetAllAsyncInc(new Expression<Func<Core.Entities.Form, object>>[] { q => q.FormData });
+                var resDto = this.mapper.Map<List<FormOutputDto>>(res);
+                return BaseResponse<List<FormOutputDto>>.Success(resDto, "Entities fetched successfully");
+            }
+            catch (Exception ex)
+            {
+                return BaseResponse<List<FormOutputDto>>.Error("An error occurred while fetching entities: " + ex.Message);
+            }
         }
 
 

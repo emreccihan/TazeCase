@@ -14,7 +14,10 @@ namespace TazeCase.Form.Business.Mapper
     {
         public GeneralMapping()
         {
+            CreateMap<Core.Entities.Form, DTOs.FormDto.FormBaseOutputDto>()
+                .ReverseMap();
             CreateMap<Core.Entities.Form, DTOs.FormDto.FormOutputDto>()
+                .ForMember(dest => dest.FormDataCount, opt => opt.MapFrom(src => src.FormData.Count))
                 .ReverseMap();
             CreateMap<Core.Entities.Form, DTOs.FormDto.FormInputDto>()
                 .ReverseMap();

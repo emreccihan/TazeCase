@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TazeCase.Form.Data.Context;
 
@@ -11,9 +12,11 @@ using TazeCase.Form.Data.Context;
 namespace TazeCase.Form.Data.Migrations
 {
     [DbContext(typeof(FormDataContext))]
-    partial class FormDataContextModelSnapshot : ModelSnapshot
+    [Migration("20240912234156_RemoveFormDataTable")]
+    partial class RemoveFormDataTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,8 +55,9 @@ namespace TazeCase.Form.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("FormFieldId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("FieldName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("FormId")
                         .HasColumnType("uniqueidentifier");
@@ -66,8 +70,6 @@ namespace TazeCase.Form.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FormFieldId");
 
                     b.HasIndex("FormId");
 
@@ -106,12 +108,6 @@ namespace TazeCase.Form.Data.Migrations
 
             modelBuilder.Entity("TazeCase.Form.Core.Entities.FormDataValue", b =>
                 {
-                    b.HasOne("TazeCase.Form.Core.Entities.FormField", "FormField")
-                        .WithMany()
-                        .HasForeignKey("FormFieldId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("TazeCase.Form.Core.Entities.Form", "Form")
                         .WithMany()
                         .HasForeignKey("FormId")
@@ -119,8 +115,6 @@ namespace TazeCase.Form.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Form");
-
-                    b.Navigation("FormField");
                 });
 
             modelBuilder.Entity("TazeCase.Form.Core.Entities.FormField", b =>

@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TazeCase.Form.Business.Mapper;
 using TazeCase.Form.Business.Service.Form;
+using TazeCase.Form.Business.Service.FormData;
 using TazeCase.Form.Business.Service.FormField;
 using TazeCase.Form.Core.Repository;
 using TazeCase.Form.Data.Context;
@@ -20,6 +21,8 @@ builder.Services.AddTransient<IFormService, FormService>();
 builder.Services.AddTransient<IFormFieldService, FormFieldService>();
 builder.Services.AddTransient<IFormFieldRepository, FormFieldRepository>();
 builder.Services.AddTransient<IFormRepository, FormRepository>();
+builder.Services.AddTransient<IFormDataRepository, FormDataValueRepository>();
+builder.Services.AddTransient<IFormDataService, FormDataService>();
 
 
 #if DEBUG

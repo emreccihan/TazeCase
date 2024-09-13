@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TazeCase.Form.Data.Context;
 
@@ -11,9 +12,11 @@ using TazeCase.Form.Data.Context;
 namespace TazeCase.Form.Data.Migrations
 {
     [DbContext(typeof(FormDataContext))]
-    partial class FormDataContextModelSnapshot : ModelSnapshot
+    [Migration("20240913002106_UpdateFormDataTableForField")]
+    partial class UpdateFormDataTableForField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

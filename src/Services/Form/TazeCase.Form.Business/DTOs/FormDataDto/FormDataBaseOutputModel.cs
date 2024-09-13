@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TazeCase.Form.Business.DTOs.FormFieldDto;
 
-namespace TazeCase.Form.Core.Entities
+namespace TazeCase.Form.Business.DTOs.FormDataDto
 {
-    public class FormDataValue:BaseEntity
+    public class FormDataBaseOutputModel : BaseDto
     {
         public Guid FormFieldId { get; set; }
-        public virtual FormField FormField { get; set; }
+        public FormFieldBaseOutputDto FormField { get; set; }
         public string Value { get; set; }
-        public Guid FormId { get; set; }
-        public virtual Form Form{ get; set; }
     }
 }

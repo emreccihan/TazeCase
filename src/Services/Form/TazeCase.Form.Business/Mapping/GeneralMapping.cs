@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TazeCase.Form.Business.DTOs.FormDataDto;
 using TazeCase.Form.Business.DTOs.FormFieldDto;
 using TazeCase.Form.Core.Entities;
 
@@ -27,15 +28,29 @@ namespace TazeCase.Form.Business.Mapper
                 .ReverseMap();
             CreateMap<Core.Entities.FormField, DTOs.FormFieldDto.FormFieldInputDto>()
                 .ReverseMap();
-            //CreateMap<IGrouping<Guid, FormField>, FormFieldGroupByFormDto>()
-            //    .ForMember(dest => dest.FormId, opt => opt.MapFrom(src => src.Key))  // FormId'yi grup anahtarından alıyoruz
-            //    .ForMember(dest => dest.FormFields, opt => opt.MapFrom(src => src.ToList())); // Grup içindeki verileri liste olarak haritalıyoruz
+
             CreateMap<IGrouping<Guid, FormField>, FormFieldGroupByFormDto>()
-               .ForMember(dest => dest.FormId, opt => opt.MapFrom(src => src.Key))  // FormId'yi grup anahtarından alıyoruz
+               .ForMember(dest => dest.FormId, opt => opt.MapFrom(src => src.Key))  
                .ForMember(dest => dest.Form, opt => opt.MapFrom(src => src.FirstOrDefault().Form != null
                    ? src.First().Form
                    : null))  // İlk Form'u kontrol ederek eşliyoruz
-               .ForMember(dest => dest.FormFields, opt => opt.MapFrom(src => src.ToList()));  // Grup içindeki verileri liste olarak haritalıyoruz
+               .ForMember(dest => dest.FormFields, opt => opt.MapFrom(src => src.ToList()));
+
+
+            CreateMap<Core.Entities.FormDataValue, DTOs.FormDataDto.FormDataBaseOutputModel>()
+                .ReverseMap();
+            CreateMap<Core.Entities.FormDataValue, DTOs.FormDataDto.FormDataInputDto>()
+                .ReverseMap();
+            CreateMap<Core.Entities.FormDataValue, DTOs.FormDataDto.FormDataOutputDto>()
+                .ReverseMap();
+            CreateMap<IGrouping<Guid, FormDataValue>, FormDataGroupByFrom>()
+               .ForMember(dest => dest.FormId, opt => opt.MapFrom(src => src.Key))
+               .ForMember(dest => dest.Form, opt => opt.MapFrom(src => src.FirstOrDefault().Form != null
+                   ? src.First().Form
+                   : null))  // İlk Form'u kontrol ederek eşliyoruz
+               .ForMember(dest => dest.FormData, opt => opt.MapFrom(src => src.ToList()));
+            //CreateMap<Core.Entities.FormDataValue, DTOs.FormFieldDto.FormFieldInputDto>()
+            //    .ReverseMap();
         }
     }
 }

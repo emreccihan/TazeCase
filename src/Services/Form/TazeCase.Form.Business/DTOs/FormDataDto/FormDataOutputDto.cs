@@ -11,7 +11,7 @@ namespace TazeCase.Form.Business.DTOs.FormDataDto
 {
     public class FormDataOutputDto: FormDataBaseOutputModel
     {
-        public FormOutputDto Form { get; set; }
+        public FormBaseOutputDto Form { get; set; }
         public Guid FormId { get; set; }
     }
     

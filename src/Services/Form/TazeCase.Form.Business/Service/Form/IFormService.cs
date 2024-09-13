@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TazeCase.Form.Business.DTOs.FormDto;
+using TazeCase.Form.Business.DTOs.FormFieldDto;
 using TazeCase.Form.Core.Repository;
 using TazeCase.Form.Core.Service;
 using TazeCase.Form.Core.Wrappers.Response;
@@ -19,5 +20,7 @@ namespace TazeCase.Form.Business.Service.Form
         //Task<BaseResponse<FormOutputDto>> Update(Guid id, FormInputDto entityDto);
         //Task<BaseResponse<bool>> Delete(Guid id);
         Task<BaseResponse<bool>> UpdateActiveStatus(FormInputActiveStatusDto isActiveDto);
+        Task<BaseResponse<List<FormOutputDto>>> GetAllIncludeAsync();
+
     }
 }

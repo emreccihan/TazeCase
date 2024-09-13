@@ -22,7 +22,7 @@ namespace TazeCase.Form.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var res = await formService.GetAllAsync();
+            var res = await formService.GetAllIncludeAsync();
             if (res.Status != 200)
                 return StatusCode(res.Status, res);
 

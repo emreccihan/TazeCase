@@ -11,6 +11,7 @@ namespace TazeCase.Form.Core.Entities
         public string FormName { get; set; }
         public string? Description { get; set; }
         public virtual ICollection<FormField> Fields { get; set; }
+        public virtual ICollection<FormDataValue> FormData{ get; set; }
         public bool IsActive { get; set; } = true;
     }
 }

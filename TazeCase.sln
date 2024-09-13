@@ -11,13 +11,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Form", "Form", "{496EC8BD-B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Report", "Report", "{24E2E0D1-8E0B-45C4-9539-CADCC2B510D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TazeCase.Form.Api", "src\Services\Form\TazeCase.Form.Api\TazeCase.Form.Api.csproj", "{B47D4990-0324-458B-A238-C19888585AB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TazeCase.Form.Api", "src\Services\Form\TazeCase.Form.Api\TazeCase.Form.Api.csproj", "{B47D4990-0324-458B-A238-C19888585AB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TazeCase.Form.Core", "src\Services\Form\TazeCase.Form.Core\TazeCase.Form.Core.csproj", "{BA02BFE9-65A9-431A-A30C-7F939C6F9FCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TazeCase.Form.Core", "src\Services\Form\TazeCase.Form.Core\TazeCase.Form.Core.csproj", "{BA02BFE9-65A9-431A-A30C-7F939C6F9FCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TazeCase.Form.Data", "src\Services\Form\TazeCase.Form.Data\TazeCase.Form.Data.csproj", "{81C3B426-4068-418E-95AD-95EEE3C61C7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TazeCase.Form.Data", "src\Services\Form\TazeCase.Form.Data\TazeCase.Form.Data.csproj", "{81C3B426-4068-418E-95AD-95EEE3C61C7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TazeCase.Form.Business", "src\Services\Form\TazeCase.Form.Business\TazeCase.Form.Business.csproj", "{E8B2D267-B7BC-41F2-87B0-41380D6BCBD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TazeCase.Form.Business", "src\Services\Form\TazeCase.Form.Business\TazeCase.Form.Business.csproj", "{E8B2D267-B7BC-41F2-87B0-41380D6BCBD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TazeCase.Report.Api", "src\Services\Report\TazeCase.Report.Api\TazeCase.Report.Api.csproj", "{3981F038-0E7F-4DBC-A86D-2F367300B090}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TazeCase.Report.Business", "src\Services\Report\TazeCase.Report.Business\TazeCase.Report.Business.csproj", "{D8442606-B38C-460E-A022-253DB304E0A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TazeCase.Report.Core", "src\Services\Report\TazeCase.Report.Core\TazeCase.Report.Core.csproj", "{D925DDF2-E7A2-4F6E-BEB8-BAD9CE0652E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +47,18 @@ Global
 		{E8B2D267-B7BC-41F2-87B0-41380D6BCBD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8B2D267-B7BC-41F2-87B0-41380D6BCBD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8B2D267-B7BC-41F2-87B0-41380D6BCBD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3981F038-0E7F-4DBC-A86D-2F367300B090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3981F038-0E7F-4DBC-A86D-2F367300B090}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3981F038-0E7F-4DBC-A86D-2F367300B090}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3981F038-0E7F-4DBC-A86D-2F367300B090}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8442606-B38C-460E-A022-253DB304E0A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8442606-B38C-460E-A022-253DB304E0A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8442606-B38C-460E-A022-253DB304E0A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8442606-B38C-460E-A022-253DB304E0A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D925DDF2-E7A2-4F6E-BEB8-BAD9CE0652E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D925DDF2-E7A2-4F6E-BEB8-BAD9CE0652E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D925DDF2-E7A2-4F6E-BEB8-BAD9CE0652E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D925DDF2-E7A2-4F6E-BEB8-BAD9CE0652E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +71,9 @@ Global
 		{BA02BFE9-65A9-431A-A30C-7F939C6F9FCF} = {496EC8BD-BE9B-42AC-BCD5-6154A8643C4B}
 		{81C3B426-4068-418E-95AD-95EEE3C61C7B} = {496EC8BD-BE9B-42AC-BCD5-6154A8643C4B}
 		{E8B2D267-B7BC-41F2-87B0-41380D6BCBD4} = {496EC8BD-BE9B-42AC-BCD5-6154A8643C4B}
+		{3981F038-0E7F-4DBC-A86D-2F367300B090} = {24E2E0D1-8E0B-45C4-9539-CADCC2B510D8}
+		{D8442606-B38C-460E-A022-253DB304E0A4} = {24E2E0D1-8E0B-45C4-9539-CADCC2B510D8}
+		{D925DDF2-E7A2-4F6E-BEB8-BAD9CE0652E7} = {24E2E0D1-8E0B-45C4-9539-CADCC2B510D8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9D306F60-306D-4A4B-B874-88247246FA3B}

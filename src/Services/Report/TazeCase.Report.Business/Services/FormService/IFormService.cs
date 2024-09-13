@@ -10,6 +10,6 @@ namespace TazeCase.Report.Business.Services.FormService
 {
     public interface IFormService
     {
-        Task<BaseResponse<List<FormOutputDto>>> GetFormReportAsync(Guid FormId);
+        Task<BaseResponse<List<FormOutputDto>>> GetFormReportAsync();
     }
 }

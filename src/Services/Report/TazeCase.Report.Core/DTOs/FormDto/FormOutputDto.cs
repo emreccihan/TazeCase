@@ -9,7 +9,7 @@ namespace TazeCase.Report.Core.DTOs.FormDto
     public class FormOutputDto
     {
         public string FormName {  get; set; }
-        public string FormDescription {  get; set; }
+        public string Description {  get; set; }
         public int FormDataCount { get; set; }
     }
 }

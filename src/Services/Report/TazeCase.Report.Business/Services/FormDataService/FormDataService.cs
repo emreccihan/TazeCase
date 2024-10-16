@@ -24,7 +24,7 @@ namespace TazeCase.Report.Business.Services.FormDataService
             {
                 var requestUrl = $"https://localhost:5000/api/FormData/ByFormId/{formId}";
 
-                var response = await _httpClient.GetAsync(requestUrl);
+                var response =  await _httpClient.GetAsync(requestUrl);
                 response.EnsureSuccessStatusCode();
 
                 var content = await response.Content.ReadAsStringAsync();
